@@ -15,4 +15,11 @@ class UsersController < ApplicationController
     else
       redirect to '/register'
     end
+  end
+
+  get '/users/:id' do
+    @user = User.find(params[:id])
+    erb :'/users/show'
+  end
+  
 end
