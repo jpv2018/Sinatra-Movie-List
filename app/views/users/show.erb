@@ -3,12 +3,12 @@
 <h3>Your Movie List</h3>
 <body> <%
 if @user.movies != []
-        @user.movies.each do |movie| %>
-        <%= movie.title  %> <br>
+        @user.movies.each do |m| %>
+        <%= m.title %> <% @this_movie = m %><font size="2px"><%= embed = "<a href='/movies/#{@this_movie.id}/edit'> Edit</a>" %></font><br>
     <% end %>
 <% else %>
     <%= @phrase %>
 <% end %><br><br>
-Click this button to add a new movie to your list.<br>
+Click here to add a new movie to your list.<br>
 <a href="/movies/new">Add movie</a><br><br>
 <a href="/logout">Log out</a>

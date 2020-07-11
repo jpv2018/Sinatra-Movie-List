@@ -31,4 +31,8 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  def auth?(movie)
+    movie.user == current_user
+  end
+  
 end
