@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
 
   # GET: /movies/new
   get "/movies/new" do
-    erb :"/movies/new.html"
+    erb :"/movies/new"
   end
 
   # POST: /movies
