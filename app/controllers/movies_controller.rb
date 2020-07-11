@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
 
   # POST: /movies
   post "/movies" do
-    @movie = Movie.new(title: params[:title], user_id: @current_user.id)
+    @movie = Movie.new(title: params[:title], user_id: session[:user_id])
     @movie.save
     redirect to '/'
   end

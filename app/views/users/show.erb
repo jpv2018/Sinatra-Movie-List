@@ -1,13 +1,13 @@
 <title> <%=@user.username %></title>
 <h1><%= @user.username %>'s profile page </h1>
 <h3>Your Movie List</h3>
-<body> <%= 
+<body> <%
 if @user.movies != []
-    @user.movies.each do |movie|
-        movie
-    end
-else 
-    @phrase
-end %><br><br>
+        @user.movies.each do |movie| %>
+        <%= movie.title  %> <br>
+    <% end %>
+<% else %>
+    <%= @phrase %>
+<% end %><br><br>
 Click this button to add a new movie to your list.<br>
 <a href="/movies/new">Add movie</a>
