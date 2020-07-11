@@ -10,9 +10,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    if is_logged_in
+    if is_logged_in?
       redirect to "/users/#{current_user.id}"
-    erb :welcome
+    else
+      erb :welcome
+    end
   end
 
   def current_user
@@ -20,7 +22,7 @@ class ApplicationController < Sinatra::Base
   end
 
   def is_logged_in?
-    !!curent_user
+    !!current_user
   end
 
   def no_login
