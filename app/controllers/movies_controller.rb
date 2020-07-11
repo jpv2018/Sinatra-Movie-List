@@ -12,7 +12,9 @@ class MoviesController < ApplicationController
 
   # POST: /movies
   post "/movies" do
-    redirect "/movies"
+    @movie = Movie.new(title: params[:title], user_id: @current_user.id)
+    @movie.save
+    redirect to '/'
   end
 
   # GET: /movies/5
@@ -34,4 +36,5 @@ class MoviesController < ApplicationController
   delete "/movies/:id/delete" do
     redirect "/movies"
   end
+
 end
