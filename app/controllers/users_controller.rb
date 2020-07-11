@@ -19,13 +19,14 @@ class UsersController < ApplicationController
   end
 
   get '/users/:id' do
+    no_login
     @user = User.find(params[:id])
     @phrase = "No movies yet!"
     erb :'/users/show'
   end
 
   post '/login' do
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect to "/users/#{@user.id}"
