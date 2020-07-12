@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+
+    <% if flash[:message] %>
+      <h3 style="color: white; background-color: green;"><center><%= flash[:message] %></center></h3>
+      <% end %>
+
+      <% if flash[:error] %>
+      <h3 style="color: white; background-color: red;"><center><%= flash[:error] %></center></h3>
+      <% end %>
+
     <div class="wrapper">
 
         <%= yield %>

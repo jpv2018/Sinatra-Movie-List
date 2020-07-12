@@ -1,7 +1,9 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
-
+  require 'sinatra/base'
+  require 'sinatra/flash'
+  
   set :method_override, true
 
   configure do
@@ -9,12 +11,13 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "Movie list"
+    register Sinatra::Flash
   end
 
   get "/" do
     if is_logged_in?
       redirect to "/users/#{current_user.id}"
-    else
+    else 
       erb :welcome
     end
   end
