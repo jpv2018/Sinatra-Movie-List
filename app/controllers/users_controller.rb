@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect to "/users/#{@user.id}"
     else
+      flash[:error] = "Oops! #{@user.errors.full_messages.to_sentence}"
       redirect to '/register'
     end
   end
@@ -33,6 +34,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect to "/users/#{@user.id}"
     else
+      flash[:error] = "Incorrect Username or Password. Please try again."
       redirect to '/login'
     end
   end

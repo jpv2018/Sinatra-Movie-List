@@ -11,9 +11,16 @@ class MoviesController < ApplicationController
   end
 
   post "/movies" do
-    @movie = Movie.new(title: params[:title], user_id: session[:user_id])
-    @movie.save
-    redirect to '/'
+    no_login
+    if params[:title] != ""
+      flash[:message] = "Movie added!"
+      @movie = Movie.new(title: params[:title], user_id: session[:user_id])
+      @movie.save
+      redirect to '/'
+    else 
+      flash[:error] = "Title field can not be blank"
+      redirect to '/movies/new'
+    end
   end
     
   get "/movies/:id/edit" do
@@ -30,10 +37,12 @@ class MoviesController < ApplicationController
     current_movie
     no_login
     if auth?(@movie) && params[:title] != ""
+      flash[:message] = "Title updated"
       @movie.update(title: params[:title])
       redirect to "/"
     else
-      redirect to "/"
+      flash[:error] = "Title field can not be blank"
+      redirect to "/movies/#{@movie.id}/edit"
     end
   end
 
