@@ -5,7 +5,7 @@
 if @user.movies != []
         @user.movies.each do |m| %>
         <%= m.title %> <% @this_movie = m %><br><font size="2px"><%= embed = "<a href='/movies/#{@this_movie.id}/edit'> Edit</a>" %></font><br>
-        <form action="/movies/<%=@this_movie.id%>" method="POST" 
+        <form action="/movies/<%=@this_movie.id%>" method="POST"> 
         <input type="hidden" name="_method" value="DELETE">
         <input type="submit" value="delete">
         </form><br>
