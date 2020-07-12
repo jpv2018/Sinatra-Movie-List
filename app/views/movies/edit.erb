@@ -1,0 +1,13 @@
+<title>Edit movie</title>
+<% @this_movie = Movie.find_by(id: params[:id]) %>
+<h1> Edit the name of your movie here! </h1><br>
+<h3> Typos happen to the best of us... </h3><br><br>
+<body>
+The title of the movie is currently <%= @this_movie.title %>.<br>
+Please type in the corrected title below to update it.<br><br>
+<form method="POST" action="/movies/<%= @this_movie.id %>"
+<input type ="hidden" name="_method" value="patch">
+<label for="title">Title: </label>
+<input type="text" name="title">
+<input type="submit" value="Change">
+</form>
