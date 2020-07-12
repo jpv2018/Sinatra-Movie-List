@@ -5,8 +5,7 @@
 <body>
 The title of the movie is currently <%= @this_movie.title %>.<br>
 Please type in the corrected title below to update it.<br><br>
-<form method="POST" action="/movies/<%= @this_movie.id%>"
-<input id="hidden" type ="hidden" name="_method" value="PATCH">
+<form action="/movies/<%= @this_movie.id%>" method="POST"
 <label for="title">Title: </label>
 <input type="text" name="title">
 <input id="hidden" type ="hidden" name="_method" value="PATCH">

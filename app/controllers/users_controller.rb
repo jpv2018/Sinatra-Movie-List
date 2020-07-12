@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  set :method_override, true
+
   get '/login' do
     erb :login
   end
@@ -39,4 +41,5 @@ class UsersController < ApplicationController
     session.clear
     redirect to '/'
   end
+
 end

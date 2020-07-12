@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   set :method_override, true
-  
+
   get "/movies" do
     erb :"/movies/index.html"
   end
@@ -15,11 +15,7 @@ class MoviesController < ApplicationController
     @movie.save
     redirect to '/'
   end
-
-  get "/movies/:id" do
     
-  end
-
   get "/movies/:id/edit" do
     no_login
     current_movie
@@ -41,13 +37,16 @@ class MoviesController < ApplicationController
     end
   end
 
-  delete "/movies/:id/delete" do
-    redirect "/movies"
-  end
-
   def current_movie
     @movie = Movie.find(params[:id])
   end
 
-
+  delete "/movies/:id" do
+    current_movie
+    if auth?(@movie)
+      @movie.destroy
+    redirect to "/"
+    end
+  end
 end
+
