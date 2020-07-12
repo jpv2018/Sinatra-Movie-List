@@ -41,10 +41,10 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
-  delete "/movies/:id" do
+  post "/movies/:id" do
     current_movie
     if auth?(@movie)
-      @movie.destroy
+      @movie.delete
     redirect to "/"
     end
   end
