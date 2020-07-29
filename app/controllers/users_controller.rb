@@ -25,7 +25,12 @@ class UsersController < ApplicationController
     no_login
     @user = User.find(params[:id])
     @phrase = "No movies yet!"
-    erb :'/users/show'
+    if @user.id != session[:user_id]
+      flash[:error] = "You can only view your own user page."
+      redirect to '/'
+    else
+      erb :'/users/show'
+    end
   end
 
   post '/login' do
